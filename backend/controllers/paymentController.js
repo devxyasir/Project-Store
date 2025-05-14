@@ -781,14 +781,24 @@ async function regenerateReceipt(transaction, user, receiptPath) {
        .font('Helvetica')
        .text('Note: This is an official receipt for your payment. Please keep it for your records.', 50, 550, { align: 'center' });
     
-    // Add signature image directly on the signature line
-    // Add just a signature line without any image
-    const lineWidth = 150;
+    // Add a stylish signature for Mujahid
+    const lineWidth = 170;
     const lineX = 100;
     const lineY = 610;
     
     // Draw the signature line
     doc.moveTo(lineX, lineY).lineTo(lineX + lineWidth, lineY).stroke();
+    
+    // Add the stylish signature above the line
+    doc.fillColor('#1a237e') // Deep blue color for signature
+       .font('Helvetica-Oblique') // Italic style for signature
+       .fontSize(24) // Larger size for signature
+       .text('Mujahid', lineX + 20, lineY - 30, { 
+          characterSpacing: 2, // Add spacing between characters for style
+          stroke: true, // Add stroke for more stylish look
+          strokeWidth: 0.2,
+          strokeColor: '#3949ab' // Slightly lighter blue for stroke
+       });
     
     // Add the signature text below the line
     doc.fillColor(textColor) // Use black text

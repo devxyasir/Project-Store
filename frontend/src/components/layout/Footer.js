@@ -88,26 +88,59 @@ const Footer = () => {
             <Typography variant="h6" color="text.primary" gutterBottom>
               Support
             </Typography>
-            <Link href="#" color="inherit" display="block" sx={{ mb: 1 }}>
+            <Link component={RouterLink} to="/contact" color="inherit" display="block" sx={{ mb: 1 }}>
               Contact Us
             </Link>
-            <Link href="#" color="inherit" display="block" sx={{ mb: 1 }}>
+            <Link component={RouterLink} to="/faq" color="inherit" display="block" sx={{ mb: 1 }}>
               FAQ
             </Link>
-            <Link href="#" color="inherit" display="block" sx={{ mb: 1 }}>
+          </Grid>
+
+          <Grid item xs={12} sm={2}>
+            <Typography variant="h6" color="text.primary" gutterBottom>
+              Legal & Policies
+            </Typography>
+            <Link component={RouterLink} to="/privacy-policy" color="inherit" display="block" sx={{ mb: 1 }}>
               Privacy Policy
             </Link>
-            <Link href="#" color="inherit" display="block" sx={{ mb: 1 }}>
+            <Link component={RouterLink} to="/terms-of-service" color="inherit" display="block" sx={{ mb: 1 }}>
               Terms of Service
+            </Link>
+            <Link component={RouterLink} to="/shipping-policy" color="inherit" display="block" sx={{ mb: 1 }}>
+              Shipping Policy
+            </Link>
+            <Link component={RouterLink} to="/refund-policy" color="inherit" display="block" sx={{ mb: 1 }}>
+              Refund Policy
+            </Link>
+            <Link component={RouterLink} to="/cookie-policy" color="inherit" display="block" sx={{ mb: 1 }}>
+              Cookie Policy
+            </Link>
+            <Link component={RouterLink} to="/gdpr-compliance" color="inherit" display="block" sx={{ mb: 1 }}>
+              GDPR Compliance
+            </Link>
+            <Link component={RouterLink} to="/ccpa-compliance" color="inherit" display="block" sx={{ mb: 1 }}>
+              CCPA Compliance
+            </Link>
+            <Link component={RouterLink} to="/accessibility" color="inherit" display="block" sx={{ mb: 1 }}>
+              Accessibility
+            </Link>
+            <Link component={RouterLink} to="/disclaimer" color="inherit" display="block" sx={{ mb: 1 }}>
+              Disclaimer
             </Link>
           </Grid>
         </Grid>
         
         <Divider sx={{ my: 3 }} />
         
-        <Typography variant="body2" color="text.secondary" align="center">
-          © {currentYear} Project Store. All rights reserved.
-        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+          <Typography variant="body2" color="text.secondary" align="center">
+            © {currentYear} Project Store. All rights reserved.
+          </Typography>
+          
+          <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 1 }}>
+            A product by <Link href="https://devsecure.netlify.app" target="_blank" rel="noopener" sx={{ fontWeight: 'medium' }}>Devsecure</Link>
+          </Typography>
+        </Box>
       </Container>
     </Box>
   );

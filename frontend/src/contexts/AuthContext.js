@@ -2,17 +2,29 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
+// Configure global axios defaults to include credentials
+axios.defaults.withCredentials = true;
+
 // Create axios instance with proper configuration
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
   withCredentials: true, // Always include credentials (cookies)
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
   }
 });
 
-// Also configure global axios defaults to include credentials
-axios.defaults.withCredentials = true;
+// Add request interceptor to ensure proper headers for all requests
+api.interceptors.request.use(function (config) {
+  // Add or modify headers as needed for each request
+  config.headers = {
+    ...config.headers,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  };
+  return config;
+});
 
 // Create Auth Context
 const AuthContext = createContext();
@@ -253,7 +265,17 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     
     try {
-      const res = await api.post('/auth/register', userData);
+      // Use direct axios call with full URL to avoid any path configuration issues
+      const res = await axios({
+        method: 'post',
+        url: 'http://localhost:5000/api/auth/register',
+        data: userData,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        withCredentials: true
+      });
       
       if (res.data.success) {
         // Save token to localStorage
@@ -291,8 +313,15 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     
     try {
-      // Use axios directly with withCredentials to ensure cookies are properly set
-      const res = await axios.post('/api/auth/login', userData, {
+      // Use direct axios call with full URL to avoid any path configuration issues
+      const res = await axios({
+        method: 'post',
+        url: 'http://localhost:5000/api/auth/login',
+        data: userData,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         withCredentials: true
       });
       

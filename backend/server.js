@@ -15,6 +15,7 @@ const paymentVerificationRoutes = require('./routes/payment-verification');
 const adminRoutes = require('./routes/admin');
 const uploadRoutes = require('./routes/upload');
 const settingsRoutes = require('./routes/settingsRoutes');
+const contactRoutes = require('./routes/contact');
 
 // Import models
 const Settings = require('./models/Settings');
@@ -29,21 +30,30 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 
-// Detailed CORS configuration to ensure cookies work properly
-const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'http://localhost:3000',
-  credentials: true, // Essential for sending cookies cross-origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['set-cookie'],
-  optionsSuccessStatus: 200,
-  preflightContinue: false
-};
+// CORS Configuration - Simplified for development
+app.use(cors({
+  origin: true, // Allow requests from any origin in development
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Origin', 'Accept']
+}));
 
-app.use(cors(corsOptions));
+// Handle OPTIONS preflight requests
+app.options('*', cors());
 
-// Add this to handle OPTIONS requests properly
-app.options('*', cors(corsOptions));
+// Add explicit CORS headers for all responses
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
 
 // Configure cookie parser with secret key for signed cookies
 app.use(cookieParser(process.env.COOKIE_SECRET || 'projectstore_cookie_secret')); // Parse cookies
@@ -99,6 +109,7 @@ app.use('/api/payments', [paymentRoutes, paymentVerificationRoutes]);
 app.use('/api/admin', adminRoutes);
 app.use('/api/uploads', uploadRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

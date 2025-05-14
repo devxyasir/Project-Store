@@ -36,7 +36,6 @@ import GDPRCompliancePage from './pages/GDPRCompliancePage';
 import CCPACompliancePage from './pages/CCPACompliancePage';
 import AccessibilityPage from './pages/AccessibilityPage';
 import DisclaimerPage from './pages/DisclaimerPage';
-import ContactPage from './pages/ContactPage';
 
 // Admin Pages
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
@@ -48,7 +47,6 @@ import AdminUsersPage from './pages/admin/AdminUsersPage';
 import AdminTransactionsPage from './pages/admin/AdminTransactionsPage';
 import AdminSettingsPage from './pages/admin/AdminSettingsPage';
 import AdminPaymentSettingsPage from './pages/AdminPaymentSettingsPage';
-import AdminContactsPage from './pages/admin/AdminContactsPage';
 
 // Protected Route Component with enhanced persistence
 const ProtectedRoute = ({ children, admin = false }) => {
@@ -117,7 +115,6 @@ function App() {
             <Route path="ccpa-compliance" element={<CCPACompliancePage />} />
             <Route path="accessibility" element={<AccessibilityPage />} />
             <Route path="disclaimer" element={<DisclaimerPage />} />
-            <Route path="contact" element={<ContactPage />} />
             
             {/* Protected User Routes */}
             <Route path="cart" element={
@@ -163,7 +160,6 @@ function App() {
             <Route path="categories" element={<AdminCategoriesPage />} />
             <Route path="users" element={<AdminUsersPage />} />
             <Route path="transactions" element={<AdminTransactionsPage />} />
-            <Route path="contacts" element={<AdminContactsPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
             <Route path="payment-settings" element={<AdminPaymentSettingsPage />} />
           </Route>

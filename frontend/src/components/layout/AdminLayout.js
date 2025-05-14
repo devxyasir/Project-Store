@@ -32,6 +32,7 @@ import {
   DarkMode,
   Payment,
   CreditCard,
+  Email as EmailIcon,
 } from '@mui/icons-material';
 import { useTheme as useMuiTheme } from '@mui/material/styles';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -74,6 +75,7 @@ const AdminLayout = () => {
     { text: 'Categories', icon: <Category />, path: '/admin/categories' },
     { text: 'Users', icon: <People />, path: '/admin/users' },
     { text: 'Transactions', icon: <Receipt />, path: '/admin/transactions' },
+    { text: 'Contact Messages', icon: <EmailIcon />, path: '/admin/contacts' },
     { text: 'Payment Settings', icon: <CreditCard />, path: '/admin/payment-settings' },
     { text: 'Settings', icon: <Settings />, path: '/admin/settings' },
   ];
