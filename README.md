@@ -56,8 +56,19 @@ Create a `.env` file in the backend directory with:
 
 ```
 PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+MONGODB_URI=mongodb+srv://localhost:27017/project
+JWT_SECRET=your_jwt_secret_should_be_secure_and_long
+NODE_ENV=development
+
+# Cloudinary Configuration
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+# Gmail API Configuration for Payment Verification
+GMAIL_EMAIL=your_nayapay_linked_email@gmail.com
+GMAIL_APP_PASSWORD=app_password 
+
 ```
 
 Create a `.env` file in the frontend directory with:
