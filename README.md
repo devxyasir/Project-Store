@@ -1,6 +1,10 @@
 # Project Store Website
 
 A full-stack MERN application for selling programming/tech projects.
+<!-- 
+SEO Keywords:
+devxyasir · Muhammad Yasir · AI Engineer · Machine Learning Engineer · Web Developer · Cybersecurity Developer · Python Projects · JavaScript Projects · FastAPI · NoSQL · DigitoolDB · Open Source · Portfolio devsecure.netlify.app · GitHub @devxyasir
+-->
 
 ## Features
 
